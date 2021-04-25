@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quickumber/objects/item.dart';
 
+import 'add-or-remove.dart';
+
 class ListItem extends StatefulWidget {
   Item item;
   var key;
   static var favoriteList = [];
+
   ListItem({this.item, this.key}) : super(key: key);
 
   @override
@@ -13,7 +16,6 @@ class ListItem extends StatefulWidget {
 }
 
 class _ListItemState extends State<ListItem> {
-
   var key;
   Item item;
   Color likeButtonColor = Colors.black12;
@@ -21,13 +23,12 @@ class _ListItemState extends State<ListItem> {
 
   addFavorite(String item) {
     ListItem.favoriteList.add(item);
-      likeButtonColor = Colors.red;
+    likeButtonColor = Colors.red;
   }
 
-  removeFavorite(String item)
-  {
+  removeFavorite(String item) {
     ListItem.favoriteList.remove(item);
-      likeButtonColor = Colors.black12;
+    likeButtonColor = Colors.black12;
   }
 
   _ListItemState(this.item, this.key);
@@ -40,7 +41,7 @@ class _ListItemState extends State<ListItem> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            //IMAGE
+            /** IMAGE */
             Flexible(
               flex: 1,
               child: ClipRRect(
@@ -68,73 +69,7 @@ class _ListItemState extends State<ListItem> {
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   Container(
                     width: 150,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        /**** REMOVE_BUTTON ****/
-                        Container(
-                          height: 35,
-                          width: 35,
-                          child: Ink(
-                            decoration: ShapeDecoration(
-                              color: Colors.orange,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                            ),
-                            child: IconButton(
-                              iconSize: 20,
-                              onPressed: () {
-                                setState(() {
-                                  if(amount != 0)
-                                    amount--;
-                                });
-                              },
-                              icon: Icon(
-                                Icons.remove,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                        // SizedBox(
-                        //   width: 20,
-                        // ),
-                        Text(
-                          amount.toString() + " " + this.item.unit,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        // SizedBox(
-                        //   width: 20,
-                        // ),
-                        /**** ADD_BUTTON ****/
-                        Container(
-                          height: 35,
-                          width: 35,
-                          child: Ink(
-                            decoration: ShapeDecoration(
-                              color: Colors.orange,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                            ),
-                            child: IconButton(
-                              iconSize: 20,
-                              // splashColor: Colors.transparent,
-                              // highlightColor: Colors.transparent,
-                              onPressed: () {
-                                setState(() {
-                                  if(amount < 100)
-                                    amount++;
-                                });
-                              },
-                              icon: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: AddOrRemoveItem(this.item.unit)
                   ),
                   // SizedBox(
                   //   height: 15,
