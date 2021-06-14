@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../scale-config.dart';
+
 class AddOrRemoveItem extends StatefulWidget
 {
   String unit;// = "KG";
@@ -17,21 +19,24 @@ class _AddOrRemoveItemState extends State<AddOrRemoveItem>
 
   @override
   Widget build(BuildContext context) {
+
+    ScaleConfig().init(context);
+
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         /**** REMOVE_BUTTON ****/
         Container(
-          height: 35,
-          width: 35,
+          height: ScaleConfig.blockSizeVertical * 6,
+          width: ScaleConfig.blockSizeHorizontal * 10,
           child: Ink(
             decoration: ShapeDecoration(
               color: Colors.orange,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
+                  borderRadius: BorderRadius.circular(ScaleConfig.blockSizeVertical * 2)),
             ),
             child: IconButton(
-              iconSize: 20,
+              iconSize: ScaleConfig.blockSizeVertical * 2,
               onPressed: () {
                 setState(() {
                   if (amount != 0) amount--;
@@ -44,28 +49,28 @@ class _AddOrRemoveItemState extends State<AddOrRemoveItem>
             ),
           ),
         ),
-        // SizedBox(
-        //   width: 20,
-        // ),
+        SizedBox(
+          width: ScaleConfig.blockSizeHorizontal * 2,
+        ),
         Text(
           amount.toString() + " " + widget.unit,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2),
         ),
-        // SizedBox(
-        //   width: 20,
-        // ),
+        SizedBox(
+          width: ScaleConfig.blockSizeHorizontal * 2,
+        ),
         /**** ADD_BUTTON ****/
         Container(
-          height: 35,
-          width: 35,
+          height: ScaleConfig.blockSizeVertical * 6,
+          width: ScaleConfig.blockSizeHorizontal * 10,
           child: Ink(
             decoration: ShapeDecoration(
               color: Colors.orange,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
+                  borderRadius: BorderRadius.circular(ScaleConfig.blockSizeVertical * 2)),
             ),
             child: IconButton(
-              iconSize: 20,
+              iconSize: ScaleConfig.blockSizeVertical * 2,
               // splashColor: Colors.transparent,
               // highlightColor: Colors.transparent,
               onPressed: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quickumber/objects/item.dart';
+import 'package:quickumber/scale-config.dart';
 import 'package:quickumber/templates/add-or-remove.dart';
 
 class ItemDescription extends StatelessWidget {
@@ -22,8 +23,10 @@ class ItemDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScaleConfig().init(context);
     return Scaffold(
         body: Container(
+          //padding: EdgeInsets.only(),
       //clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -31,7 +34,7 @@ class ItemDescription extends StatelessWidget {
         children: [
           /** IMAGE */
           Flexible(
-            flex: 3,
+            flex: 2,
             child: Image.network(
               this.item.displayImgUrl,
               fit: BoxFit.fill,
@@ -42,7 +45,7 @@ class ItemDescription extends StatelessWidget {
           Flexible(
             flex: 1,
             child: Container(
-              padding: EdgeInsets.all(10.0),
+              //padding: EdgeInsets.all(10.0),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -53,18 +56,18 @@ class ItemDescription extends StatelessWidget {
                         Text(
                           this.item.displayName,
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: ScaleConfig.blockSizeVertical * 3, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           this.item.price.toString(),
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: ScaleConfig.blockSizeVertical * 3, fontWeight: FontWeight.bold),
                         ),
                         OutlinedButton(
                             onPressed: () {},
                             child: Text(
                               "\$10 Discount",
-                              style: TextStyle(fontSize: 11.0),
+                              style: TextStyle(fontSize: ScaleConfig.blockSizeVertical * 2),
                             )),
                       ],
                     ),
@@ -87,12 +90,10 @@ class ItemDescription extends StatelessWidget {
           /** DESCRIPTION */
           Flexible(
             flex: 2,
-            child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  this.item.description,
-                  style: TextStyle(fontSize: 17),
-                )),
+            child: Text(
+              this.item.description,
+              style: TextStyle(fontSize: ScaleConfig.blockSizeVertical * 2.5),
+            ),
           ),
 
           Divider(thickness: 5,),
@@ -104,27 +105,26 @@ class ItemDescription extends StatelessWidget {
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                ConstrainedBox(
-                    constraints: BoxConstraints.tight(Size(150.0, 50.0)),
-                    child: AddOrRemoveItem(this.item.unit)),
+                AddOrRemoveItem(this.item.unit),
 
-                SizedBox(height: 20,),
+                SizedBox(height: ScaleConfig.blockSizeVertical * 2,),
 
                 /** ADD TO CART BUTTON */
                 Container(
-                  width: 200,
-                  height: 50,
+                  width: ScaleConfig.blockSizeHorizontal * 40,
+                  height: ScaleConfig.blockSizeVertical * 6,
                   child: OutlinedButton(
                     onPressed: () {},
                     child: Text(
                       'Add to Cart',
                       style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+                          color: Colors.black, fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 5),
+                      textScaleFactor: 0.5,
                     ),
                     style: OutlinedButton.styleFrom(
                         primary: Colors.green,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0))),
+                            borderRadius: BorderRadius.circular(ScaleConfig.blockSizeVertical * 5))),
                   ),
                 )
               ]),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quickumber/objects/item.dart';
 
+import '../scale-config.dart';
 import 'add-or-remove.dart';
 
 class ListItem extends StatefulWidget {
@@ -35,9 +36,11 @@ class _ListItemState extends State<ListItem> {
 
   @override
   Widget build(BuildContext context) {
+    ScaleConfig().init(context);
+
     return Container(
-        padding: EdgeInsets.all(10),
-        height: 150,
+        padding: EdgeInsets.all(ScaleConfig.blockSizeVertical * 2),
+        height: ScaleConfig.blockSizeVertical * 20,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -45,49 +48,49 @@ class _ListItemState extends State<ListItem> {
             Flexible(
               flex: 1,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(ScaleConfig.blockSizeVertical * 2),
                 child: Image.network(
                   this.item.displayImgUrl,
                   fit: BoxFit.fill,
-                  height: 100,
-                  width: 100,
+                  height: ScaleConfig.blockSizeVertical * 20,
+                  width: ScaleConfig.blockSizeHorizontal * 20,
                 ),
               ),
             ),
 
             //CENTER-PORTION
             Flexible(
-              flex: 2,
+              flex: 1,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     this.item.displayName,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2),
                   ),
                   Text(this.item.price.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Container(
-                    width: 150,
-                    child: AddOrRemoveItem(this.item.unit)
-                  ),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2)),
+                  // Container(
+                  //   width: ScaleConfig.blockSizeHorizontal * 1,
+                  //   child: AddOrRemoveItem(this.item.unit)
+                  // ),
                   // SizedBox(
                   //   height: 15,
                   // ),
                   Container(
-                    width: 170,
-                    height: 40,
+                    width: ScaleConfig.blockSizeHorizontal * 35,
+                    height: ScaleConfig.blockSizeVertical * 4,
                     child: OutlinedButton(
                       onPressed: () {},
                       child: Text(
                         'Add to Cart',
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                            color: Colors.black, fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2),
                       ),
                       style: OutlinedButton.styleFrom(
                           primary: Colors.orange,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0))),
+                              borderRadius: BorderRadius.circular(ScaleConfig.blockSizeVertical * 3))),
                     ),
                   )
                 ],
@@ -101,12 +104,12 @@ class _ListItemState extends State<ListItem> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                      height: 30,
+                      height: ScaleConfig.blockSizeVertical * 5,
                       child: OutlinedButton(
                           onPressed: () {},
                           child: Text(
                             "\$10 Discount",
-                            style: TextStyle(fontSize: 11.0),
+                            style: TextStyle(fontSize: ScaleConfig.blockSizeVertical * 2),
                           ))),
                   IconButton(
                       onPressed: () {
