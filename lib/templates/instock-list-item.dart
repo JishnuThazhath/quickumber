@@ -39,7 +39,7 @@ class _ListItemState extends State<ListItem> {
     ScaleConfig().init(context);
 
     return Container(
-        padding: EdgeInsets.all(ScaleConfig.blockSizeVertical * 2),
+        padding: EdgeInsets.all(ScaleConfig.blockSizeVertical * 1),
         height: ScaleConfig.blockSizeVertical * 20,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,39 +58,65 @@ class _ListItemState extends State<ListItem> {
               ),
             ),
 
+            SizedBox(
+              width: ScaleConfig.blockSizeHorizontal * 10,
+            ),
+
             //CENTER-PORTION
             Flexible(
-              flex: 1,
+              flex: 2,
               child: Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    this.item.displayName,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      this.item.displayName,
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2,),
+                    ),
                   ),
-                  Text(this.item.price.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2)),
-                  // Container(
-                  //   width: ScaleConfig.blockSizeHorizontal * 1,
-                  //   child: AddOrRemoveItem(this.item.unit)
-                  // ),
+                  //
                   // SizedBox(
-                  //   height: 15,
+                  //   height: ScaleConfig.blockSizeVertical * 3,
                   // ),
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(this.item.price.toString(),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2)),
+                  ),
+                  //
+                  // SizedBox(
+                  //   height: ScaleConfig.blockSizeVertical * 1,
+                  // ),
+
                   Container(
-                    width: ScaleConfig.blockSizeHorizontal * 35,
-                    height: ScaleConfig.blockSizeVertical * 4,
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Add to Cart',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2),
+                    //width: ScaleConfig.blockSizeHorizontal * 1,
+                    child: AddOrRemoveItem(this.item.unit)
+                  ),
+
+                  // SizedBox(
+                  //   height: ScaleConfig.blockSizeVertical * 1,
+                  // ),
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      width: ScaleConfig.blockSizeHorizontal * 35,
+                      height: ScaleConfig.blockSizeVertical * 4,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Add to Cart',
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 2),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                            primary: Colors.orange,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(ScaleConfig.blockSizeVertical * 3))),
                       ),
-                      style: OutlinedButton.styleFrom(
-                          primary: Colors.orange,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(ScaleConfig.blockSizeVertical * 3))),
                     ),
                   )
                 ],
@@ -104,12 +130,16 @@ class _ListItemState extends State<ListItem> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                      height: ScaleConfig.blockSizeVertical * 5,
+                      height: ScaleConfig.blockSizeVertical * 4,
+                      width: ScaleConfig.blockSizeHorizontal * 20,
                       child: OutlinedButton(
                           onPressed: () {},
-                          child: Text(
-                            "\$10 Discount",
-                            style: TextStyle(fontSize: ScaleConfig.blockSizeVertical * 2),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "\$10 Discount",
+                              style: TextStyle(fontSize: ScaleConfig.blockSizeVertical * 1,),
+                            ),
                           ))),
                   IconButton(
                       onPressed: () {

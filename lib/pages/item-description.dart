@@ -26,7 +26,11 @@ class ItemDescription extends StatelessWidget {
     ScaleConfig().init(context);
     return Scaffold(
         body: Container(
-          //padding: EdgeInsets.only(),
+      padding: EdgeInsets.fromLTRB(
+          ScaleConfig.blockSizeHorizontal * 1,
+          ScaleConfig.blockSizeVertical * 1,
+          ScaleConfig.blockSizeHorizontal * 1,
+          ScaleConfig.blockSizeVertical * 1),
       //clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -56,18 +60,21 @@ class ItemDescription extends StatelessWidget {
                         Text(
                           this.item.displayName,
                           style: TextStyle(
-                              fontSize: ScaleConfig.blockSizeVertical * 3, fontWeight: FontWeight.bold),
+                              fontSize: ScaleConfig.blockSizeVertical * 3,
+                              fontWeight: FontWeight.bold),
                         ),
                         Text(
                           this.item.price.toString(),
                           style: TextStyle(
-                              fontSize: ScaleConfig.blockSizeVertical * 3, fontWeight: FontWeight.bold),
+                              fontSize: ScaleConfig.blockSizeVertical * 3,
+                              fontWeight: FontWeight.bold),
                         ),
                         OutlinedButton(
                             onPressed: () {},
                             child: Text(
                               "\$10 Discount",
-                              style: TextStyle(fontSize: ScaleConfig.blockSizeVertical * 2),
+                              style: TextStyle(
+                                  fontSize: ScaleConfig.blockSizeVertical * 2),
                             )),
                       ],
                     ),
@@ -95,39 +102,46 @@ class ItemDescription extends StatelessWidget {
               style: TextStyle(fontSize: ScaleConfig.blockSizeVertical * 2.5),
             ),
           ),
-
-          Divider(thickness: 5,),
+          Divider(
+            thickness: 5,
+          ),
 
           /** FOOTER */
           Flexible(
             flex: 1,
             child: Container(
+              //width: ScaleConfig.blockSizeHorizontal * 5,
               child: Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                AddOrRemoveItem(this.item.unit),
-
-                SizedBox(height: ScaleConfig.blockSizeVertical * 2,),
-
-                /** ADD TO CART BUTTON */
-                Container(
-                  width: ScaleConfig.blockSizeHorizontal * 40,
-                  height: ScaleConfig.blockSizeVertical * 6,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Add to Cart',
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold, fontSize: ScaleConfig.blockSizeVertical * 5),
-                      textScaleFactor: 0.5,
+                    AddOrRemoveItem(this.item.unit, MainAxisAlignment.center),
+                    SizedBox(
+                      height: ScaleConfig.blockSizeVertical * 2,
                     ),
-                    style: OutlinedButton.styleFrom(
-                        primary: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(ScaleConfig.blockSizeVertical * 5))),
-                  ),
-                )
-              ]),
+
+                    /** ADD TO CART BUTTON */
+                    Container(
+                      width: ScaleConfig.blockSizeHorizontal * 40,
+                      height: ScaleConfig.blockSizeVertical * 6,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Add to Cart',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: ScaleConfig.blockSizeVertical * 5),
+                          textScaleFactor: 0.5,
+                        ),
+                        style: OutlinedButton.styleFrom(
+                            primary: Colors.green,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    ScaleConfig.blockSizeVertical * 5))),
+                      ),
+                    )
+                  ]),
             ),
           )
         ],

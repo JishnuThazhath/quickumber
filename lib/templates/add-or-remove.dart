@@ -6,8 +6,9 @@ import '../scale-config.dart';
 class AddOrRemoveItem extends StatefulWidget
 {
   String unit;// = "KG";
+  MainAxisAlignment alignment;
 
-  AddOrRemoveItem(this.unit) : super(key: UniqueKey());
+  AddOrRemoveItem(this.unit, [this.alignment = MainAxisAlignment.start]) : super(key: UniqueKey());
 
   @override
   State<StatefulWidget> createState() => _AddOrRemoveItemState();
@@ -17,13 +18,15 @@ class _AddOrRemoveItemState extends State<AddOrRemoveItem>
 {
   int amount = 0;
 
+ // _AddOrRemoveItemState(this.alignment);
+
   @override
   Widget build(BuildContext context) {
 
     ScaleConfig().init(context);
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: widget.alignment,
       children: [
         /**** REMOVE_BUTTON ****/
         Container(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:quickumber/login-form.dart';
-import 'package:quickumber/signup-form.dart';
+import 'package:quickumber/pages/instockpage.dart';
+import 'package:quickumber/scale-config.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,118 +13,93 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    //int padding = 10;
+
+    ScaleConfig().init(context);
+
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(25),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: <Color>[Colors.blue, Colors.green],
-          ),
-        ),
+        padding: EdgeInsets.fromLTRB(
+            ScaleConfig.blockSizeHorizontal * 15,
+            ScaleConfig.blockSizeVertical * 20,
+            ScaleConfig.blockSizeHorizontal * 15,
+            ScaleConfig.blockSizeVertical * 5),
+
+        color: Colors.white70,
+
         child: Column(
-          //mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("QuickUmber",
-                style: TextStyle(
-                    decoration: TextDecoration.none,
-                    color: Colors.white,
-                    fontSize: 40)),
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      isLogin = false;
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.green, onPrimary: Colors.green),
-                  child: Text(
-                    'SIGN UP',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                OutlineButton(
-                    onPressed: () {
-                      setState(() {
-                        isLogin = true;
-                      });
-                    },
-                    borderSide: BorderSide(
-                      color: Colors.white, //Color of the border
-                      style: BorderStyle.solid, //Style of the border
-                      width: 3, //width of the border
-                    ),
-                    child: Text(
-                      'LOGIN',
-                      style: TextStyle(color: Colors.white),
-                    )),
-              ],
-            ),
-            isLogin == true ? LoginForm() : SignUpForm(),
-            Divider(
-              thickness: 2,
-              color: Colors.white,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
+          //mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
               child: Column(
                 children: [
-                  SizedBox(
-                      height: 50,
-                      width: 500,
-                      child: OutlineButton(
-                          onPressed: () {},
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.white, //Color of the border
-                            style: BorderStyle.solid, //Style of the border
-                            width: 3, //width of the border
-                          ),
-                          child: Text(
-                            'LOGIN WITH GMAIL',
-                            style: TextStyle(color: Colors.white),
-                          ))),
-                  SizedBox(
-                    height: 10.0,
+                  /**
+                   * LOGO IMAGE
+                   * */
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                          ScaleConfig.blockSizeVertical * 40),
+                      child: Image.asset("assets/logo.jpeg")),
+
+                  /**
+                   * LOGO TEXT
+                   * */
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Quick",
+                        style: TextStyle(
+                            fontSize: ScaleConfig.blockSizeVertical * 6,
+                            fontWeight: FontWeight.bold,
+                        color: Colors.lightGreen),
+                      ),
+                      Text(
+                        "Umber",
+                        style: TextStyle(
+                            fontSize: ScaleConfig.blockSizeVertical * 6,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                      height: 50,
-                      width: 500,
-                      child: OutlineButton.icon(
-                          onPressed: () {},
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.white, //Color of the border
-                            style: BorderStyle.solid, //Style of the border
-                            width: 3, //width of the border
-                          ),
-                          icon: const Icon(
-                            Icons.add,
-                            size: 18,
-                            color: Colors.white,
-                          ),
-                          label: Text(
-                            'LOGIN WITH FACEBOOK',
-                            style: TextStyle(color: Colors.white),
-                          ))),
                 ],
               ),
-            )
+            ),
+
+            SizedBox(height: ScaleConfig.blockSizeVertical * 20,),
+
+            /**
+             * LOGIN BUTTON
+             * */
+            SizedBox(
+              width: ScaleConfig.blockSizeHorizontal * 100,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              ScaleConfig.blockSizeVertical * 10))),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => InStock()));
+                  },
+                  child: Text("LOGIN")),
+            ),
+
+            /**
+             * SIGNUP BUTTON
+             * */
+            SizedBox(
+              width: ScaleConfig.blockSizeHorizontal * 100,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.lightGreen,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              ScaleConfig.blockSizeVertical * 10))),
+                  onPressed: () {},
+                  child: Text("SIGN UP")),
+            ),
           ],
         ),
       ),
