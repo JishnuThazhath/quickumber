@@ -20,9 +20,9 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.fromLTRB(
-            ScaleConfig.blockSizeHorizontal * 15,
-            ScaleConfig.blockSizeVertical * 20,
-            ScaleConfig.blockSizeHorizontal * 15,
+            ScaleConfig.blockSizeHorizontal * 5,
+            ScaleConfig.blockSizeVertical * 10,
+            ScaleConfig.blockSizeHorizontal * 5,
             ScaleConfig.blockSizeVertical * 5),
 
         color: Colors.white70,

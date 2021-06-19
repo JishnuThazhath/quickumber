@@ -151,7 +151,7 @@ class _ListItemState extends State<ListItem> {
                         print(ListItem.favoriteList);
                       },
                       icon: Icon(
-                        Icons.circle,
+                        Icons.favorite,
                         color: likeButtonColor,
                       ))
                 ],

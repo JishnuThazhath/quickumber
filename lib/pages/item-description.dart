@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:quickumber/objects/bottom-navigation.dart';
 import 'package:quickumber/objects/item.dart';
 import 'package:quickumber/scale-config.dart';
 import 'package:quickumber/templates/add-or-remove.dart';
@@ -96,10 +97,13 @@ class ItemDescription extends StatelessWidget {
 
           /** DESCRIPTION */
           Flexible(
-            flex: 2,
-            child: Text(
-              this.item.description,
-              style: TextStyle(fontSize: ScaleConfig.blockSizeVertical * 2.5),
+            flex: 1,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Text(
+                this.item.description,
+                style: TextStyle(fontSize: ScaleConfig.blockSizeVertical * 2.5),
+              ),
             ),
           ),
           Divider(
@@ -146,6 +150,8 @@ class ItemDescription extends StatelessWidget {
           )
         ],
       ),
-    ));
+    ),
+    bottomNavigationBar: BottomNavigation(),
+    );
   }
 }

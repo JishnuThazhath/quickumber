@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quickumber/objects/bottom-navigation.dart';
 import 'package:quickumber/objects/item.dart';
 import 'package:quickumber/pages/item-description.dart';
 import 'package:quickumber/templates/instock-list-item.dart';
@@ -57,6 +58,8 @@ class _InStockState extends State<InStock> {
           thickness: 3,
         ),
       )),
+
+      bottomNavigationBar: BottomNavigation(),
     );
   }
 }
